@@ -1,9 +1,6 @@
-import solutions.day5
-import solutions.day6
-import solutions.day7
-import solutions.day8
+import solutions.day9
 
 fun main(args: Array<String>) {
-    day8()
+    day9()
 }
 
