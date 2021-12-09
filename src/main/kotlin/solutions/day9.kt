@@ -20,10 +20,10 @@ fun day9() {
     matrix.forEachIndexed { rowIndex, row ->
         row.forEachIndexed { colIndex, col ->
             var min = true
-            if (isPosValid(rowIndex, colIndex -1 ) && !(col < matrix [rowIndex][colIndex -1])) min = false
-            if (isPosValid(rowIndex - 1, colIndex) && !(col < matrix [rowIndex - 1][colIndex])) min = false
-            if (isPosValid(rowIndex + 1, colIndex) && !(col < matrix [rowIndex + 1][colIndex])) min = false
-            if (isPosValid(rowIndex, colIndex +1 ) && !(col < matrix [rowIndex][colIndex +1])) min = false
+            if (isPosValid(rowIndex, colIndex -1 ) && col >= matrix [rowIndex][colIndex -1]) min = false
+            if (isPosValid(rowIndex - 1, colIndex) && col >= matrix [rowIndex - 1][colIndex]) min = false
+            if (isPosValid(rowIndex + 1, colIndex) && col >= matrix [rowIndex + 1][colIndex]) min = false
+            if (isPosValid(rowIndex, colIndex +1 ) && col >= matrix [rowIndex][colIndex +1]) min = false
             if (min) {
                 println("Local min found at [$rowIndex, $colIndex] = $col")
                 basinSizes.add(calculateSize(matrix.clone(), rowIndex, colIndex))
