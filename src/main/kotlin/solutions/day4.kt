@@ -20,7 +20,7 @@ fun day4() {
         i+=6
     }
 
-    run breakStatement@ {
+    run {
         numbers.forEach { inputNumber ->
             boards.forEach { board ->
                 if (!board.reachedBingo) {

@@ -50,24 +50,23 @@ fun createMappingFor(input: List<String>): List<String> {
                 7 -> result[8] = it
                 5 -> {
                     if (it.toList().intersect(result[1].toList()).size == 2) {
-                        result[3] = it // a 3
+                        result[3] = it
                     } else if (it.toList().intersect(result[4].toList()).size == 3) {
-                        result[5] = it // a 5
+                        result[5] = it
                     } else {
-                        result[2] = it // a 2
+                        result[2] = it
                     }
                 }
                 6 -> {
                     if (it.toList().intersect(result[1].toList()).size < 2) {
-                        result[6] = it // a 6
+                        result[6] = it
                     } else if (it.toList().intersect(result[4].toList()).size == 4) {
-                        result[9] = it // a 9
+                        result[9] = it
                     } else {
-                        result[0] = it // a 0
+                        result[0] = it
                     }
                 }
             }
-
         }
     }
     return result.map { it.sort() }
