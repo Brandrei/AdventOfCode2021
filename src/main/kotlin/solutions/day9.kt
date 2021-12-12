@@ -2,8 +2,8 @@ package solutions
 
 import readFile
 
-const val LINES = 100
-const val COLS = 100
+private  const val LINES = 100
+private const val COLS = 100
 
 fun day9() {
     val input = readFile("src/main/assets/day9.txt")
@@ -47,7 +47,6 @@ fun calculateSize(matrix: Array<IntArray>, rowIndex: Int, colIndex: Int): Int {
 
 }
 
-fun isPosValid(x: Int, y: Int): Boolean {
+private fun isPosValid(x: Int, y: Int): Boolean {
     return (x in 0 until LINES && y in 0 until COLS )
 }
-

@@ -45,13 +45,6 @@ fun buildInput(input: List<String>): List<Line> = input.map { inputLine ->
     Line(Point(x1.toInt(), y1.toInt()), Point(x2.toInt(), y2.toInt()))
 }
 
-fun Array<IntArray>.print() {
-    this.forEach { rows ->
-        rows.forEach { print("$it ") }
-        println()
-    }
-}
-
 fun Array<IntArray>.countScore(): Int {
     var count = 0
     this.forEach { rows ->

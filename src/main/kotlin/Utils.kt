@@ -7,3 +7,12 @@ fun readFile(filename: String) : List<String> {
 }
 
 fun readFileToInt(filename: String) : List<Int> = readFile(filename).map { it.toInt() }
+
+
+fun Array<IntArray>.print() {
+    this.forEach { rows ->
+        rows.forEach { print("$it ") }
+        println()
+    }
+    println()
+}
