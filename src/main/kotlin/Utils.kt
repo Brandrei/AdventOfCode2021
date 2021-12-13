@@ -16,3 +16,11 @@ fun Array<IntArray>.print() {
     }
     println()
 }
+
+fun Array<CharArray>.print() {
+    this.forEach { rows ->
+        rows.forEach { print("$it ") }
+        println()
+    }
+    println()
+}
