@@ -13,6 +13,7 @@ fun day16() {
     val versions = mutableListOf<Int>()
     val protocols = mutableListOf<Int>()
     val literalValues = mutableListOf<BigInteger>()
+    val packets = mutableListOf<Packet>()
     var index = 0
     while (index < listInBinary.length) {
         if (index > listInBinary.length - 7) break
@@ -39,18 +40,26 @@ fun day16() {
 //            println("Literal: $literal")
 
             literalValues.add(BigInteger(literal, 2))
+            packets.add(Packet(version, protocol, literal.length, BigInteger(literal, 2).toLong(), mutableListOf()))
         } else {
             if (listInBinary[index] == '0') {
                 index++
                 val packetsBinary = listInBinary.substring(index, index + 15)
                 val packetLength = Integer.parseInt(packetsBinary, 2)
 //                println("Number of packets in subgroup = $packetsBinary -> $packetLength")
+                packets.add(Packet(version, protocol, packetLength, 0, mutableListOf()))
                 index += 15
             } else {
                 index++
                 val packetsBinary = listInBinary.substring(index, index + 11)
-                val packetLength = Integer.parseInt(packetsBinary, 2)
+                val noOfPackets = Integer.parseInt(packetsBinary, 2)
 //                println("Number of packets in subgroup = $packetsBinary -> $packetLength")
+                packets.add(Packet(version = version,
+                    protocol = protocol,
+                    length = 0,
+                    value = 0,
+                    subPackets = mutableListOf(),
+                    noOfSubPackets = noOfPackets))
                 index += 11
             }
         }
@@ -61,8 +70,9 @@ fun day16() {
     println("Protocols: $protocols")
     println("Literals: $literalValues")
     println("Input lenght: ${listInBinary.length}")
+    println("Packets: $packets")
 
-    println("Part2 ${buildTreeFromString(listInBinary)}")
+//    println("Part2 ${buildTreeFromString(listInBinary)}")
 }
 
 var newIndex = 0
@@ -183,7 +193,8 @@ class Packet(
     val protocol: Int,
     val length: Int,
     var value: Long,
-    val subPackets: MutableList<Packet>
+    val subPackets: MutableList<Packet>,
+    val noOfSubPackets: Int = 0
 ) {
 
     fun eval(): Long {
@@ -208,7 +219,7 @@ class Packet(
     }
 
     override fun toString(): String {
-        return "Packet type: $protocol, length: $length, value: $value, " +
+        return "Packet type: $protocol, length: $length, value: $value, childrens: $noOfSubPackets" +
                 "children: {  ${subPackets.map { it.value }}  }"
     }
 }
