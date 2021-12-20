@@ -22,11 +22,11 @@ fun day20() {
     }
 //    println("Initial image:")
     image.print()
-    var filtered = filterImage(image, mapping)
+    var filtered = filterImage(image, mapping, 0)
     filtered.print()
 //    println("new image size: ${filtered.size}")
-    repeat(1) {
-        filtered = filterImage(filtered, mapping)
+    repeat(49) {
+        filtered = filterImage(filtered, mapping, it)
     }
     filtered.print()
 //    println("new image size: ${filtered.size}")
@@ -38,7 +38,7 @@ fun day20() {
     println("Lit pixels: $litPixels")
 }
 
-fun filterImage(image: Array<IntArray>, mapping: IntArray): Array<IntArray> {
+fun filterImage(image: Array<IntArray>, mapping: IntArray, run: Int): Array<IntArray> {
     val result = Array(image.size + 2) { IntArray(image.size + 2) { 0 } }
     fun inBounds(x: Int, y: Int) = (x in 0 until image.size) && (y in 0 until image.size)
     for (rowInd in -1..image.size) {
@@ -47,7 +47,11 @@ fun filterImage(image: Array<IntArray>, mapping: IntArray): Array<IntArray> {
             for (i in -1..1) {
                 for (j in -1..1) {
                     sb.append(
-                        if (inBounds(rowInd + i, colInd + j)) image[rowInd + i][colInd + j] else 0
+                        if (inBounds(rowInd + i, colInd + j)) {
+                            image[rowInd + i][colInd + j]
+                        } else {
+                            run % 2
+                        }
                     )
                 }
             }
