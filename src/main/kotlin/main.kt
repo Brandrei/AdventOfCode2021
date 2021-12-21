@@ -1,5 +1,5 @@
-import solutions.day19
+import solutions.day21
 
 fun main() {
-    day19()
+    day21()
 }
