@@ -64,7 +64,7 @@ fun testPlayerAdvance() {
 
 data class State(var p1Pos: Int, var p2Pos: Int, var p1Score: Int, var p2Score: Int)
 
-fun part2() {
+private fun part2() {
     var p1Wins: Long = 0
     var p2Wins: Long = 0
     val states = mutableMapOf(State(8, 6, 0, 0) to 1L)
