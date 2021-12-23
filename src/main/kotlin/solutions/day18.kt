@@ -12,7 +12,7 @@ fun day18() {
     part2(input)
 }
 
-fun part2(input: List<String>) {
+private fun part2(input: List<String>) {
     var maxMagnitude = 0
     input.forEachIndexed { indL1, l1 ->
         input.forEachIndexed { indL2, l2 ->
@@ -30,7 +30,7 @@ fun part2(input: List<String>) {
     println("Maximum magnitude found: $maxMagnitude")
 }
 
-fun part1(input: List<String>) {
+private fun part1(input: List<String>) {
     var result = parseLine(input[0])
     (1 until input.size).forEach { index ->
         val addedLine = addLines(result, parseLine(input[index]))
